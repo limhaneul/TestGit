@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+	
+	<script type="text/javascript">
+	
+	//주제 :
+	//HTML요청하는 파일에서 요청값(파라미터)을 가지고 서버측의 JSP페이지에 요청한다.
+	//요청받은 JSP페이지에서는 요청한 값을 request내장객체로부터 얻어서 동적인 응답데이터를 마련해서
+	//클라이언트가 요청 4.html로 반환 시켜 웹브라우저로 출력시키는 비동기 통신의 예제
+	
+	
+		
+	 var xhttp;
+	 
+	
+	 function createHttpRequest(){
+		 
+		 xhttp=new XMLHttpRequest();
+		 
+	 }
+	 
+	 function mySend(){
+		
+		 createHttpRequest();
+		 
+		 xhttp.onreadystatechange = callFunction;//js는 함수명만적어도 호출가능
+	 	 
+		 xhttp.open("GET","sampleTest.jsp?userid=홍길동&passwd=test",true);
+		 
+		 xhttp.send(null);
+		
+	 }
+	 
+	 function callFunction(){
+		 
+		 if(xhttp.readyState == 4){
+			 
+			 if(xhttp.status == 200){
+				
+				//sampleTest.jsp에서 응답한 데이터는 문자열이기 때문에
+				//responsText프로퍼티를 사용함
+				 var responseData=xhttp.responseText;
+					
+				 document.getElementById("result").innerHTML=responseData;
+				 
+				 
+			 }
+			 
+			 
+		 }
+		 
+	 }
+	 
+    </script>
+
+</head>
+<body>
+
+ 	일반 텍스트 파일을 불러오는 실습입니다.
+ 	
+ 	<button onclick="mySend()">파일 수신</button>
+	<div id="result"></div>
+	
+	
+	
+</body>
+</html>
+
+
+
+
+

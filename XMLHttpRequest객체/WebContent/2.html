@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+	
+	<script type="text/javascript">
+		
+	 var xhttp;
+	 
+	
+	 function createHttpRequest(){
+		 
+		 xhttp=new XMLHttpRequest();
+		 
+	 }
+	 
+	 function mySend(){
+		
+		 createHttpRequest();
+		 
+		 xhttp.onreadystatechange = callFunction;//js는 함수명만적어도 호출가능
+	 	 
+		 xhttp.open("GET","sample.xml",true);
+		 
+		 xhttp.send(null);
+		
+	 }
+	 
+	 function callFunction(){
+		 
+		 if(xhttp.readyState == 4){
+			 
+			 if(xhttp.status == 200){
+				
+				 //XML형식으로 응답 데이터 처리를 위하여 responseXML프로퍼티를 사용함
+				 
+				 var responseData=xhttp.responseXML;
+				 
+				 //sample.xml의 태그명중에서 ...<title>인 태그에 해당하는 값들을 배열로 반환 받기
+				 var titles=responseData.getElementsByTagName("title");
+				 //반환된 배열의 첫번쨰 값을 title변수에 저장
+		
+				 //<title>사랑해 그리고 기억해</title>
+				 //사랑해 그리고 기억해
+				 var title=titles[0].firstChild.nodeValue;
+				 //sample.xml의 태그명 중에서 .. <artist>인 태그에 해당하는 값들을 배열로 반환받기
+				 var artists= responseData.getElementsByTagName("artist");
+				 //반환된 배열의 첫번쨰 값을 artist변수에 저장
+				 //지오디 
+				 var artist=artists[0].firstChild.nodeValue;
+				 
+				 document.getElementById("result").innerHTML=title +"\t"+artist;
+				 
+				 
+			 }
+			 
+			 
+		 }
+		 
+	 }
+	 
+    </script>
+
+</head>
+<body>
+
+ 	일반 텍스트 파일을 불러오는 실습입니다.
+ 	
+ 	<button onclick="mySend()">파일 수신</button>
+	<div id="result"></div>
+	
+	
+	
+</body>
+</html>
+
+
+
+
+
