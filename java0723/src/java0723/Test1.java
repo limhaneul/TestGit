@@ -16,6 +16,7 @@ public class Test1 {
 		// - 클라이언트의 메세지를 모든 클라이언트에게 전달 (브로드 캐스팅)
 		// =>(사용자의 ID , 메세지) = > Map  
 		
+		System.out.println("안녕 깃허브야");
 
 	}
 
